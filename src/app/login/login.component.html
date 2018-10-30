@@ -1,0 +1,40 @@
+<div class="h-100vh bg-danger">
+	<div class="d-flex flex-column h-100 align-items-center justify-content-center">
+		<div class="bg-light h-500 w-500 h-250 rounded shadow p-5">
+			<div class="text-center">
+				<h3 class="font-20 text-spacing-1">Cl<i class="fas fa-clock font-13 text-primary"></i>ckr</h3>
+				<h1 class="font-30 font-weight-light">Login</h1>
+				<p>to your account</p>
+			</div>
+
+			<form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="mt-5">
+				<div class="form-group">
+					<label for="email" class="text-dark">Email or Phone</label>
+					<input type="email" name="email" class="form-control" [(ngModel)]="loginForm.email" #email="ngModel" placeholder="Enter Email or Phone" required>
+					<span class="text-danger" [hidden]="email.valid || email.pristine" >Couldn't find your account</span>
+				</div>
+
+				<div class="form-group py-1 text-center">
+					<a routerLink="#" class="font-weight-bold text-danger">Forgot Account?</a>
+				</div>
+				<div class="form-group py-1 text-center">
+					<a routerLink="#" class="font-weight-bold text-primary">Enter Auth Code</a>
+				</div>
+				<button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary float-right">Next</button>
+				<div class="clearfix"></div>
+			</form>
+
+			<div class="text-center p-2">
+				<span>Get the App on </span>
+				<i class="fab fa-apple px-1 font-18 text-dark highlight-primary"></i>
+				<i class="fab fa-google px-1 text-dark highlight-primary"></i>
+			</div>
+		</div>
+		<div class="d-flex w-500 p-2 font-weight-bold text-dark justify-content-between">
+			<a routerLink="#" class="text-dark"><i class="fas fa-plus-circle"></i> New Account</a>
+			<a routerLink="#" class="text-dark"><i class="fas fa-info-circle"></i> Help</a>
+		</div>
+
+		{{loginForm.value | json}}
+	</div>
+</div>

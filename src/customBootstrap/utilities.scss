@@ -1,0 +1,34 @@
+@for $i from 0 to 20 {
+	$val: $i * 50;
+	.h-#{$val}{
+		height: #{$val}px;
+	}
+	.w-#{$val}{
+		width: #{$val}px;
+	}
+
+	.text-spacing-#{$i}{
+		letter-spacing: #{$i}px;
+	}
+}
+
+@for $i from 0 to 50 {
+	.font-#{$i}{
+		font-size: #{$i}px;
+	}
+}
+
+.h-100vh{
+	height: 100vh;
+}
+
+.w-100vw{
+	width: 100vw;
+}
+
+i.highlight-primary{
+	transition: all 0.2s ease-in-out;
+	&:hover{
+		color: $primary !important;
+	}
+}
