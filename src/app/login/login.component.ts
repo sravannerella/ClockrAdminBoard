@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -14,11 +14,25 @@ export class LoginComponent implements OnInit {
 	iteration = 0;
 	submitForm = false;
 	questions = [
-		{type: 'email', label: 'Email Or Phone', placeholder: 'Enter Email or Phone', controlName: 'email', errMsg: "Couldn't find your account"},
-		{type: 'password', label: 'Password', placeholder: 'Enter Password', controlName: 'pass', errMsg: "Invalid password"}
-	]
+		{
+			type: 'email',
+			label: 'Email Or Phone',
+			placeholder: 'Enter Email or Phone',
+			controlName: 'email',
+			autoComplete: 'email',
+			errMsg: 'Couldn\'t find your account'
+		},
+		{
+			type: 'password',
+			label: 'Password',
+			placeholder: 'Enter Password',
+			controlName: 'pass',
+			autoComplete: 'current-password',
+			errMsg: 'Invalid password'
+		}
+	];
 
-	constructor(private fb: FormBuilder) {
+	constructor(private fb: FormBuilder, private router: Router) {
 		this.loginForm = this.fb.group({
 			email: ['', [
 				Validators.required,
@@ -36,29 +50,30 @@ export class LoginComponent implements OnInit {
 
 	login() {
 		console.log(this.loginForm.value);
+		this.router.navigateByUrl('/dashboard');
 	}
 
 	get email() {
 		return this.loginForm.get('email');
 	}
 
-	get password(){
+	get password() {
 		return this.loginForm.get('pass');
 	}
 
-	hasError(controlName){
-		let value = this.loginForm.get(controlName);
+	hasError(controlName) {
+		const value = this.loginForm.get(controlName);
 		return value.invalid && value.touched;
 	}
 
-	isValid(controlName){
-		let value = this.loginForm.get(controlName);
+	isValid(controlName) {
+		const value = this.loginForm.get(controlName);
 		return value.valid;
 	}
 
-	nextQuestion(){
+	nextQuestion() {
 		this.iteration++;
-		if(this.iteration === (this.questions.length - 1) ){
+		if (this.iteration === (this.questions.length - 1) ) {
 			this.submitForm = true;
 		}
 	}

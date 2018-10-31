@@ -7,10 +7,10 @@
 				<p>to your account</p>
 			</div>
 
-			<form [formGroup]="loginForm" (ngSubmit)="login()" class="mt-5" novalidate>
+			<form [formGroup]="loginForm" autocomplete="on" (ngSubmit)="login()" class="mt-5" novalidate>
 				<div [hidden]="iteration !== i" class="form-group" *ngFor="let question of questions; let i = index">
 					<label [for]="question.type" class="text-dark">{{ question.label }}</label>
-					<input [type]="question.type" [formControlName]="question.controlName" class="form-control" [placeholder]="question.placeholder" required>
+					<input [type]="question.type" [autocomplete]="question.autoComplete" [formControlName]="question.controlName" class="form-control" [placeholder]="question.placeholder" required>
 					<small class="text-danger" [hidden]="!(hasError(question.controlName))">{{ question.errMsg }}</small>
 				</div>
 
