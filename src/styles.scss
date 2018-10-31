@@ -5,8 +5,13 @@
 @import '~bootstrap/scss/bootstrap-grid';
 @import './customBootstrap/utilities.scss';
 
-a:hover{
-	text-decoration: none;
+a {
+	color: $dark;
+
+	&:hover{
+		text-decoration: none;
+		color: $primary;
+	}
 }
 
 .form-control{
