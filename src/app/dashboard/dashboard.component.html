@@ -47,6 +47,7 @@
 
 					<div class="bg-light p-3 text-center text-dark rounded-20" (click)="changePlan(item.id)">
 						<p class="m-0 font-weight-bold" *ngIf="company.planId === item.id; else upgrade">Current Plan</p>
+						<p class="m-0 font-weight-bold" *ngIf="company.planId !== 1 && item.id === 1">Free Plan</p>
 						<ng-template #upgrade>
 							<p class="m-0">Upgrade</p>
 						</ng-template>
