@@ -5,3 +5,52 @@
 	</div>
 
 </nav>
+
+<div class="container">
+
+	<div class="mt-4">
+		<p class="font-weight-bold text-muted text-uppercase">Trackers</p>
+
+		<div class="card-deck" *ngIf="items?.length > 0; else noItems">
+			<div class="card p-3 rounded-20 border-0 shadow text-light" [ngStyle]="{'background': item.color}" *ngFor="let item of items;let i = index;">
+				<h5 class="card-title pl-3">{{ item.title | uppercase}}</h5>
+
+				<div class="card-body">
+					<div class="card-text">
+						<p class="text-uppercase">{{ item.color }}</p>
+						<p class="m-0">{{ item.desc }}</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<ng-template class="card" #noItems>
+			<h5 class="card-title">No plans found</h5>
+		</ng-template>
+	</div>
+
+
+	<div class="mt-4">
+		<p class="font-weight-bold text-muted text-uppercase">Plans</p>
+
+		<div class="card-deck" *ngIf="plans?.length > 0; else noItems">
+				<div class="card p-3 rounded-20 border-0 shadow text-light" [ngStyle]="{'background': item.color}" *ngFor="let item of plans;let i = index;">
+					<h5 class="card-title pl-3">{{ item.title | uppercase}}</h5>
+	
+					<div class="card-body">
+						<div class="card-text">
+							<p class="text-uppercase">{{ item.color }}</p>
+							<p class="m-0">{{ item.desc }}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+	
+			<ng-template class="card" #noItems>
+				<h5 class="card-title">No plans found</h5>
+			</ng-template>
+	</div>
+
+</div>
