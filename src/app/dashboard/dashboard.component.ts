@@ -12,16 +12,30 @@ export class DashboardComponent implements OnInit {
 
 	items;
 	plans;
+	company;
 
 	constructor(private db: FireDBService) { }
 
+	changePlan(planId) {
+		const resp = this.db.setPlan(planId);
+		resp.then( (success) => {
+			console.log('Success: ', success);
+		}, (err) => {
+			console.log('Error: ', err);
+		});
+	}
+
 	orderBy(arr, attr) {
 		arr.sort( (a, b) => (a[attr] < b[attr]) ? -1 : (a[attr] > b[attr]) ? 1 : 0 );
-		console.log('Sorted: ', arr);
 		this.plans = arr;
 	}
 
 	ngOnInit() {
+		const company = this.db.getCompany();
+		company.subscribe( (data) => {
+			this.company = data;
+		});
+
 		const colors = this.db.getColors();
 		colors.subscribe( (data: Plans) => {
 			this.items = data.plan;
